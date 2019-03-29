@@ -43,6 +43,24 @@
     regexp: 'server_name'
     line: '  server_name: "{{ server_hostname }}"'
 
+- name: Update auth0 client id in secrets.yml
+  lineinfile:
+    path: /home/{{ deploy_user }}/consul/config/secrets.yml
+    regexp: 'auth0_client_id'
+    line: '  auth0_client_id: "{{ auth0_client_id }}"'
+
+- name: Update auth0 client secret in secrets.yml
+  lineinfile:
+    path: /home/{{ deploy_user }}/consul/config/secrets.yml
+    regexp: 'auth0_client_secret'
+    line: '  auth0_client_secret: "{{ auth0_client_secret }}"'
+
+- name: Update auth0 domain in secrets.yml
+  lineinfile:
+    path: /home/{{ deploy_user }}/consul/config/secrets.yml
+    regexp: 'auth0_domain'
+    line: '  auth0_domain: "{{ auth0_domain }}"'
+
 - name: Copy database configuration
   template:
     src: "{{ playbook_dir }}/roles/rails/templates/database.yml"
